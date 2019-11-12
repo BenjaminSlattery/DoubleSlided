@@ -69,4 +69,26 @@ public class Board {
 	public ArrayList<Square> getSquares() {
 		return squares;
 	}
+	public Square getSquare(int x, int y) {
+		Square result = null;
+		Iterator<Square> mySquares = squares.iterator();
+		while(mySquares.hasNext()) {
+			Square nextSquare = mySquares.next();
+			if (nextSquare.x == x && nextSquare.y == y) {
+				result = nextSquare;
+				return result;
+			}
+		}
+		return result;
+	}
+	public void moveSquares(int direction) {
+		Iterator<Square> mySquares = squares.iterator();
+		while(mySquares.hasNext()) {
+			mySquares.next().planMove(direction);
+		}
+		mySquares = squares.iterator();
+		while(mySquares.hasNext()) {
+			mySquares.next().executeMove();;
+		}
+	}
 }

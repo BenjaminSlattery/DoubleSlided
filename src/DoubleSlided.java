@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import boundary.DoubleSlidedWindow;
+import controller.TileKeyListener;
 import entity.Board;
 import entity.Model;
 import entity.Tile;
@@ -25,6 +26,9 @@ public class DoubleSlided {
 			public void run() {
 				try {
 					DoubleSlidedWindow frame = new DoubleSlidedWindow(model);
+					TileKeyListener listener = new TileKeyListener(model, frame);
+					frame.addKeyListener(listener);
+					frame.listen(listener);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

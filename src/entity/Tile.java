@@ -13,7 +13,7 @@ public class Tile {
 	}
 	
 	public boolean equals(Tile other) {
-		return other != null && isFlipped == other.isFlipped && labels[isFlipped?1:0].contentEquals(other.labels[isFlipped?1:0]);
+		return other != null && isFlipped == other.isFlipped && getCurrentLabel().contentEquals(other.getCurrentLabel());
 	}
 	
 	public void print() {
@@ -21,5 +21,17 @@ public class Tile {
 		System.out.print(labels[0]);
 		System.out.print(labels[1]);
 		System.out.print(isFlipped);
+	}
+	
+	public String getCurrentLabel() {
+		return labels[isFlipped?1:0];
+	}
+	
+	public void flip() {
+		isFlipped = !isFlipped;
+	}
+	
+	public boolean getIsFlipped() {
+		return isFlipped;
 	}
 }
