@@ -1,0 +1,5 @@
+Play by using the four directional arrow keys.
+Right moves the tile to the left of the empty space into it.
+Left moves the tile to the right of the empty space into it.
+Up moves the tile to the down of the empty space into it.
+Down moves the tile to the up of the empty space into it.

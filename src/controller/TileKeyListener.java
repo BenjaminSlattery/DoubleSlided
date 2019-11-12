@@ -18,6 +18,12 @@ public class TileKeyListener implements java.awt.event.KeyListener {
 	public void keyPressed(KeyEvent arg0) {
 		int direction = arg0.getKeyCode();
 		//System.out.printf("Key pressed %d!\n", direction);
+		switch(direction) {
+		case KeyEvent.VK_A: direction = KeyEvent.VK_LEFT; break;
+		case KeyEvent.VK_W: direction = KeyEvent.VK_UP; break;
+		case KeyEvent.VK_D: direction = KeyEvent.VK_RIGHT; break;
+		case KeyEvent.VK_S: direction = KeyEvent.VK_DOWN; break;
+		}
 		if (model.isActive()) {
 			switch(direction) {
 			case KeyEvent.VK_LEFT:
