@@ -28,16 +28,22 @@ public class TileKeyListener implements java.awt.event.KeyListener {
 				model.getBoard().moveSquares(direction);
 				break;
 			default:
-				break;
+				return;
 			}
+		}
+		if (model.hasWon()) {
+			System.out.print("You win!\n");	
+			window.win();
+		}
+		if (model.hasLost()) {
+			System.out.print("You lose!\n");	
+			window.lose();
 		}
 		window.refreshDisplay();
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

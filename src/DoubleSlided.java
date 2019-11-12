@@ -1,5 +1,8 @@
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
 import boundary.DoubleSlidedWindow;
 import controller.TileKeyListener;
@@ -8,6 +11,7 @@ import entity.Model;
 import entity.Tile;
 
 public class DoubleSlided {
+	public DoubleSlided() {}
 
 	public static void main(String[] args) {
 		Model model = new Model();
@@ -37,4 +41,8 @@ public class DoubleSlided {
 		});
 	}
 
+	@Test
+	public void testMain() {
+		DoubleSlided.main(null);
+	}
 }

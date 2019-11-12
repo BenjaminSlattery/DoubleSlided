@@ -35,6 +35,7 @@ public class DoubleSlidedWindow extends JFrame {
 	private JPanel panel;
 	private JButton btnNewButton;
 	private JLabel countPane;
+	private JLabel winOrLoseText;
 	
 	Model model;
 	BoardBoundary boardBoundary;
@@ -51,7 +52,7 @@ public class DoubleSlidedWindow extends JFrame {
 		boardBoundary = new BoardBoundary(model.getBoard());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 850, 750);
+		setBounds(100, 100, 1000, 750);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -63,13 +64,17 @@ public class DoubleSlidedWindow extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				model.reset();
+				winOrLoseText.setText("");
 				refreshDisplay();
 			}
 		});
 		
 		countPane = new JLabel();
 		JLabel textPaneLabel  = new JLabel();
-		textPaneLabel.setText("Count:");
+		winOrLoseText = new JLabel();
+		winOrLoseText.setText("");
+		winOrLoseText.setFont(new Font("TimesRoman", Font.BOLD, 40));
+		textPaneLabel.setText("Number of Moves:");
 		countPane.setText("0");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -78,7 +83,9 @@ public class DoubleSlidedWindow extends JFrame {
 					.addContainerGap()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 650, GroupLayout.PREFERRED_SIZE)
 					.addGap(29)
-					.addComponent(textPaneLabel)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(textPaneLabel)
+						.addComponent(winOrLoseText))
 					.addPreferredGap(ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -101,7 +108,9 @@ public class DoubleSlidedWindow extends JFrame {
 							.addGap(18)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(textPaneLabel)
-								.addComponent(countPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(countPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(60)
+							.addComponent(winOrLoseText)))
 					.addContainerGap())
 		);
 		
@@ -185,5 +194,13 @@ public class DoubleSlidedWindow extends JFrame {
 				tiles[x][y].addKeyListener(listener);
 			}
 		}
+	}
+	public void win() {
+		winOrLoseText.setText("You win!!!");
+		model.end();
+	}
+	public void lose() {
+		winOrLoseText.setText("You lose!!!");
+		model.end();
 	}
 }

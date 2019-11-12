@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class Board {
@@ -90,5 +91,18 @@ public class Board {
 		while(mySquares.hasNext()) {
 			mySquares.next().executeMove();;
 		}
+	}
+	public boolean hasLost() {
+		HashMap<String, Integer> counts = new HashMap<String, Integer>();
+		Iterator<Square> mySquares = squares.iterator();
+		while(mySquares.hasNext()) {
+			Tile myTile = mySquares.next().tile;
+			if (myTile != null) {
+				if (!counts.containsKey(myTile.getCurrentLabel())) counts.put(myTile.getCurrentLabel(), 0);
+				counts.put(myTile.getCurrentLabel(), counts.get(myTile.getCurrentLabel())+1);
+				if (counts.get(myTile.getCurrentLabel()) >= 4) return true;
+			}
+		}
+		return false;
 	}
 }
